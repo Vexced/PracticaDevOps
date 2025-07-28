@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:     # <-- corregido: era "mathcLabels"
+      app: myapp
+  template:          # <-- estaba mal indentado
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp
+          image: vexced17/practica_devops_engineer:1.0
+          ports:
+            - containerPort: 8080   # <-- corregido: era "containterPort"
