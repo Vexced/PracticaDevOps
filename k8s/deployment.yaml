@@ -15,5 +15,6 @@ spec:
       containers:
         - name: myapp
           image: vexced17/practica_devops_engineer:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080   # <-- corregido: era "containterPort"
