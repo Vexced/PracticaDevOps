@@ -33,18 +33,10 @@ jobs:
         run: mvn clean verify
 
       - name: Upload artifact to Artifactory
-        uses: jfrog/artifactory-actions/upload@v2
-        with:
-          serverId: ${{ secrets.ARTIFACTORY_SERVER_ID }}
-          spec: |
-            {    
-              "files": [    
-                {    
-                  "pattern": "target/*.jar",    
-                  "target": "libs-release-local/myapp/"    
-                }    
-              ]    
-            }    
+        run: |
+          curl -u ${{ secrets.ARTIFACTORY_USER }}:${{ secrets.ARTIFACTORY_PASSWORD }} \
+          -T target/*.jar \
+          "https://tu-dominio-artifactory/artifactory/libs-release-local/myapp/" 
 
   docker:
     needs: build
